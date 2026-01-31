@@ -3,30 +3,40 @@
 import React from "react"
 
 import { useState } from "react"
-import { Header } from "@/components/burnmap/header"
-import { RouteInput } from "@/components/burnmap/route-input"
-import { ResultsList } from "@/components/burnmap/results-list"
+import { toast } from "sonner"
+import { Header } from "@/components/flare/header"
+import { RouteInput } from "@/components/flare/route-input"
+import { ResultsList } from "@/components/flare/results-list"
+import { useDistanceMatrix } from "@/hooks/useDistanceMatrix"
 import { Leaf, TrendingUp, Heart } from "lucide-react"
+import type { PlaceData } from "@/types/google-maps"
 
-export default function BurnMapPage() {
+export default function FlarePage() {
   const [userWeight, setUserWeight] = useState(70)
   const [origin, setOrigin] = useState("")
   const [destination, setDestination] = useState("")
+  const [originPlace, setOriginPlace] = useState<PlaceData | null>(null)
+  const [destinationPlace, setDestinationPlace] = useState<PlaceData | null>(null)
   const [calculatedDistance, setCalculatedDistance] = useState<number | null>(null)
   const [isCalculating, setIsCalculating] = useState(false)
 
+  const { calculateDistance, error: distanceError } = useDistanceMatrix()
+
+  const canCalculate = !!(originPlace && destinationPlace)
+
   const handleCalculate = async () => {
-    if (!origin || !destination) return
+    if (!originPlace || !destinationPlace) return
 
     setIsCalculating(true)
-    
-    // Simulate API call to get distance
-    await new Promise((resolve) => setTimeout(resolve, 800))
-    
-    // Generate a random distance between 0.5 and 15 km for demo
-    const randomDistance = Math.random() * 14.5 + 0.5
-    setCalculatedDistance(Math.round(randomDistance * 10) / 10)
-    
+
+    const result = await calculateDistance(originPlace, destinationPlace)
+
+    if (result) {
+      setCalculatedDistance(result.distanceKm)
+    } else {
+      toast.error(distanceError || "Failed to calculate distance")
+    }
+
     setIsCalculating(false)
   }
 
@@ -52,8 +62,11 @@ export default function BurnMapPage() {
             destination={destination}
             onOriginChange={setOrigin}
             onDestinationChange={setDestination}
+            onOriginPlaceSelect={setOriginPlace}
+            onDestinationPlaceSelect={setDestinationPlace}
             onCalculate={handleCalculate}
             isCalculating={isCalculating}
+            canCalculate={canCalculate}
           />
         </div>
 

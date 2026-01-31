@@ -38,7 +38,7 @@
   --sidebar-border: oklch(0.90 0.01 240);
   --sidebar-ring: oklch(0.55 0.18 145);
 
-  /* Custom BurnMap colors */
+  /* Custom Flare colors */
   --burn-high: oklch(0.55 0.18 145);
   --burn-moderate: oklch(0.70 0.16 55);
   --burn-low: oklch(0.65 0.02 250);
@@ -78,7 +78,7 @@
   --sidebar-border: oklch(0.28 0.01 250);
   --sidebar-ring: oklch(0.60 0.18 145);
 
-  /* Custom BurnMap colors */
+  /* Custom Flare colors */
   --burn-high: oklch(0.60 0.18 145);
   --burn-moderate: oklch(0.75 0.16 55);
   --burn-low: oklch(0.55 0.02 250);

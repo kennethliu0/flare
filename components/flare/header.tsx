@@ -39,7 +39,7 @@ export function Header({ userWeight, onWeightChange }: HeaderProps) {
             <Flame className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-xl font-bold tracking-tight text-foreground">BurnMap</h1>
+            <h1 className="text-xl font-bold tracking-tight text-foreground">Flare</h1>
             <p className="text-xs text-muted-foreground">Eco-friendly trip planning</p>
           </div>
         </div>
