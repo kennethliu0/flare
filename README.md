@@ -1,6 +1,6 @@
 # Flare
 
-Eco-friendly trip planning app that compares transport options and shows how many calories you can burn on your journey.
+Eco-friendly trip planning app that compares transport options and shows how many calories you can burn on your journey.<br>
 Project submission for [Vercel x Equinox v0 Workshop](https://cerebralvalley.ai/e/vercel-x-equinox-v0-workshop)
 
 ## Features
